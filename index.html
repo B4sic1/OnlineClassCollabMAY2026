@@ -1,6 +1,152 @@
-<!DOCTYPE>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <body><p>Hello101TestSecond</p></body>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FLASHWORK — Mental Math Trainer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
+<body>
+  <div class="grain"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+ 
+  <main class="stage">
+ 
+    <!-- ===================== HOME ===================== -->
+    <section class="screen home is-active" id="screen-home">
+      <header class="brand">
+        <div class="logo">
+          <span class="logo-mark">÷</span>
+          <span class="logo-mark">×</span>
+          <span class="logo-mark">−</span>
+          <span class="logo-mark">+</span>
+        </div>
+        <h1 class="title">FLASH<em>WORK</em></h1>
+        <p class="tagline">Sharpen your mental math. Beat the clock.</p>
+      </header>
+ 
+      <div class="panel">
+        <div class="config">
+          <span class="config-label">Operation</span>
+          <div class="chips" id="ops-group" data-single>
+            <button class="chip is-on" data-op="add"><span>+</span> Addition</button>
+            <button class="chip" data-op="sub"><span>−</span> Subtraction</button>
+            <button class="chip" data-op="mul"><span>×</span> Multiplication</button>
+            <button class="chip" data-op="div"><span>÷</span> Division</button>
+            <button class="chip chip-mix" data-op="mix"><span>∗</span> Mix</button>
+          </div>
+        </div>
+ 
+        <div class="config">
+          <span class="config-label">Difficulty</span>
+          <div class="chips" id="diff-group" data-single>
+            <button class="chip is-on" data-diff="easy">Easy</button>
+            <button class="chip" data-diff="medium">Medium</button>
+            <button class="chip" data-diff="hard">Hard</button>
+          </div>
+        </div>
+ 
+        <div class="config">
+          <span class="config-label">Time limit</span>
+          <div class="chips" id="time-group" data-single>
+            <button class="chip" data-time="30">0:30</button>
+            <button class="chip is-on" data-time="60">1:00</button>
+            <button class="chip" data-time="120">2:00</button>
+            <button class="chip" data-time="0">∞ No limit</button>
+          </div>
+        </div>
+ 
+        <button class="btn-start" id="btn-start">
+          <span>Start Drill</span>
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+ 
+      <p class="hint">Type your answer and hit <kbd>Enter</kbd>. The keypad works too.</p>
+    </section>
+ 
+    <!-- ===================== GAME ===================== -->
+    <section class="screen game" id="screen-game">
+      <div class="hud">
+        <button class="hud-quit" id="btn-quit" title="Quit drill">✕</button>
+        <div class="stat">
+          <span class="stat-num" id="stat-score">0</span>
+          <span class="stat-cap">Score</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" id="stat-streak">0</span>
+          <span class="stat-cap">Streak 🔥</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" id="stat-time">1:00</span>
+          <span class="stat-cap">Time</span>
+        </div>
+      </div>
+ 
+      <div class="timerbar" id="timerbar"><span id="timerfill"></span></div>
+ 
+      <div class="problem-wrap">
+        <div class="op-tag" id="op-tag">Addition</div>
+        <div class="problem" id="problem">7 + 5</div>
+        <div class="answer-shell" id="answer-shell">
+          <input id="answer" class="answer" inputmode="numeric" autocomplete="off"
+                 placeholder="?" aria-label="Your answer" />
+        </div>
+      </div>
+ 
+      <div class="keypad" id="keypad">
+        <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button>
+        <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button>
+        <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button>
+        <button data-k="-" class="k-alt">±</button><button data-k="0">0</button>
+        <button data-k="back" class="k-alt">⌫</button>
+      </div>
+    </section>
+ 
+    <!-- ===================== RESULTS ===================== -->
+    <section class="screen results" id="screen-results">
+      <div class="medal" id="medal">★</div>
+      <h2 class="res-title" id="res-title">Nice work!</h2>
+      <div class="res-score">
+        <span class="res-score-num" id="res-score">0</span>
+        <span class="res-score-cap">points</span>
+      </div>
+ 
+      <div class="res-grid">
+        <div class="res-cell"><span id="res-correct">0</span><small>Correct</small></div>
+        <div class="res-cell"><span id="res-accuracy">0%</span><small>Accuracy</small></div>
+        <div class="res-cell"><span id="res-best">0</span><small>Best streak</small></div>
+        <div class="res-cell"><span id="res-apm">0</span><small>Correct / min</small></div>
+      </div>
+ 
+      <div class="breakdown">
+        <div class="breakdown-head">
+          <h3>Where you're struggling</h3>
+          <div class="seg" id="scope-seg">
+            <button class="is-on" data-scope="session">This drill</button>
+            <button data-scope="all">All time</button>
+          </div>
+        </div>
+        <div class="callout" id="weak-callout"></div>
+        <div class="chart" id="chart"></div>
+        <p class="chart-legend">
+          <span><i class="dot dot-acc"></i> Accuracy</span>
+          <span><i class="dot dot-time"></i> Avg time / question</span>
+        </p>
+      </div>
+ 
+      <div class="res-actions">
+        <button class="btn-start btn-again" id="btn-again">Play again</button>
+        <button class="btn-ghost" id="btn-home">Change settings</button>
+      </div>
+    </section>
+ 
+  </main>
+ 
+  <script src="script.js"></script>
+</body>
 </html>
