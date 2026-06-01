@@ -13,9 +13,9 @@
   <div class="grain"></div>
   <div class="glow glow-1"></div>
   <div class="glow glow-2"></div>
- 
+
   <main class="stage">
- 
+
     <!-- ===================== HOME ===================== -->
     <section class="screen home is-active" id="screen-home">
       <header class="brand">
@@ -28,7 +28,7 @@
         <h1 class="title">FLASH<em>WORK</em></h1>
         <p class="tagline">Sharpen your mental math. Beat the clock.</p>
       </header>
- 
+
       <div class="panel">
         <div class="config">
           <span class="config-label">Operation</span>
@@ -40,7 +40,7 @@
             <button class="chip chip-mix" data-op="mix"><span>∗</span> Mix</button>
           </div>
         </div>
- 
+
         <div class="config">
           <span class="config-label">Difficulty</span>
           <div class="chips" id="diff-group" data-single>
@@ -49,7 +49,7 @@
             <button class="chip" data-diff="hard">Hard</button>
           </div>
         </div>
- 
+
         <div class="config">
           <span class="config-label">Time limit</span>
           <div class="chips" id="time-group" data-single>
@@ -59,16 +59,16 @@
             <button class="chip" data-time="0">∞ No limit</button>
           </div>
         </div>
- 
+
         <button class="btn-start" id="btn-start">
           <span>Start Drill</span>
           <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
- 
+
       <p class="hint">Type your answer and hit <kbd>Enter</kbd>. The keypad works too.</p>
     </section>
- 
+
     <!-- ===================== GAME ===================== -->
     <section class="screen game" id="screen-game">
       <div class="hud">
@@ -86,10 +86,11 @@
           <span class="stat-cap">Time</span>
         </div>
       </div>
- 
+
       <div class="timerbar" id="timerbar"><span id="timerfill"></span></div>
- 
+
       <div class="problem-wrap">
+        <div class="problem-bg" id="problem-bg" aria-hidden="true">+</div>
         <div class="op-tag" id="op-tag">Addition</div>
         <div class="problem" id="problem">7 + 5</div>
         <div class="answer-shell" id="answer-shell">
@@ -97,7 +98,7 @@
                  placeholder="?" aria-label="Your answer" />
         </div>
       </div>
- 
+
       <div class="keypad" id="keypad">
         <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button>
         <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button>
@@ -106,7 +107,7 @@
         <button data-k="back" class="k-alt">⌫</button>
       </div>
     </section>
- 
+
     <!-- ===================== RESULTS ===================== -->
     <section class="screen results" id="screen-results">
       <div class="medal" id="medal">★</div>
@@ -115,14 +116,14 @@
         <span class="res-score-num" id="res-score">0</span>
         <span class="res-score-cap">points</span>
       </div>
- 
+
       <div class="res-grid">
         <div class="res-cell"><span id="res-correct">0</span><small>Correct</small></div>
         <div class="res-cell"><span id="res-accuracy">0%</span><small>Accuracy</small></div>
         <div class="res-cell"><span id="res-best">0</span><small>Best streak</small></div>
         <div class="res-cell"><span id="res-apm">0</span><small>Correct / min</small></div>
       </div>
- 
+
       <div class="breakdown">
         <div class="breakdown-head">
           <h3>Where you're struggling</h3>
@@ -138,15 +139,15 @@
           <span><i class="dot dot-time"></i> Avg time / question</span>
         </p>
       </div>
- 
+
       <div class="res-actions">
         <button class="btn-start btn-again" id="btn-again">Play again</button>
         <button class="btn-ghost" id="btn-home">Change settings</button>
       </div>
     </section>
- 
+
   </main>
- 
+
   <script src="script.js"></script>
 </body>
 </html>
